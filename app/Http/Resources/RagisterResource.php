@@ -19,7 +19,7 @@ class RagisterResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'token' => @$this->token,
-            'type' => 'user',
+            'type' => 'owner',
             'role' => new RoleResource(@$this->roles->first()),
         ];
     }

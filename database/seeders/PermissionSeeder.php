@@ -66,6 +66,6 @@ class PermissionSeeder extends Seeder
             $adminRole->givePermissionTo($permission['name']);
         }
 
-        $ownerRole->givePermissionTo($permission['name']);
+        $ownerRole->givePermissionTo($OwnerPermissions['name']);
     }
 }

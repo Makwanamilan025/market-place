@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\StoresRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(StoresRepository::class);
     }
 
     /**
@@ -22,3 +23,4 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 }
+
