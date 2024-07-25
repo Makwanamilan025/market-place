@@ -5,15 +5,18 @@ namespace App\Repositories;
 
 use App\Models\Stores;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoresRequst;
 
 class StoresRepository
 {
     public function store($input)
     {
-        $stores = Stores::create($input);
-        return $stores;
-
+       Stores::create($input);
+        
+        return true;
     }
+
     public function all($request)
     {
         $perPage = $request['per_page'] ?? 10;
@@ -38,5 +41,10 @@ class StoresRepository
         return $query;
     }
 
-    
+    public function update($request, $stores)
+    {
+        $stores->update($input);
+
+        return true;
+    }
 }

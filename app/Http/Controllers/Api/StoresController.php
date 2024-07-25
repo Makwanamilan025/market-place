@@ -8,6 +8,7 @@ use App\Models\Stores;
 use App\Repositories\StoresRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\StoresRequst;
 
 class StoresController extends Controller
 {
@@ -47,57 +48,41 @@ class StoresController extends Controller
         return $this->sendResponse($stores->appends(null), 'Stores listed successfully.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoresRequst $request)
     {
         $input = $request->all();
-        $data = $this->storesRepo->store($input);
-        $stores = new StoreResources($data);
-
-        return $this->sendResponse($stores, 'Stores store successfully.');
-      
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-
-    {
-        //
+        $this->storesRepo->store($input);
+    
+        return $this->sendSuccess('Stores created successfully.');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoresRequst $request, $id)
     {
-        //
+        $input = $request->all();
+        $store = Stores::findOrFail($id);
+        $this->storesRepo->update($reques, $store);
+
+        return $this->sendSuccess('Stores update successfully.');
+       
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($id)
+    {   
+
+        $stores = Stores::findOrFail($id);
+        $stores->delete();
+
+        return $this->sendSuccess('stores deleted successfully.');
+
     }
 }

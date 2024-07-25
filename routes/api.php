@@ -16,9 +16,12 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/logout', [AuthController::class, 'logout']);
 
 
-    Route::group(['prefix' => 'store', 'as' => 'store.'], function () {
-        Route::get('/',[StoresController::class,'index'])->name('index');
-        Route::post('/',[StoresController::class,'store'])->name('store');
+    Route::group(['prefix' => 'stores'], function () {
+        Route::get('/',[StoresController::class,'index']);
+        Route::post('/',[StoresController::class,'store']);
+        // Route::get('/{stores}/edit',[StoresController::class,'edit']);
+        Route::post('/{stores}/update',[StoresController::class,'update']);
+        Route::delete('/{stores}/delete', [StoresController::class, 'destroy']);
 
     });
 });
