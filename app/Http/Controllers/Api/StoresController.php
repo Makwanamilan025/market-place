@@ -8,7 +8,7 @@ use App\Models\Stores;
 use App\Repositories\StoresRepository;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-use App\Http\Requests\StoresRequst;
+use App\Http\Requests\StoresRequest;
 
 class StoresController extends Controller
 {
@@ -52,7 +52,7 @@ class StoresController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoresRequst $request)
+    public function store(StoresRequest $request)
     {
         $input = $request->all();
         $this->storesRepo->store($input);
@@ -63,11 +63,11 @@ class StoresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoresRequst $request, $id)
+    public function update(StoresRequest $request, $id)
     {
         $input = $request->all();
         $store = Stores::findOrFail($id);
-        $this->storesRepo->update($reques, $store);
+        $this->storesRepo->update($input, $store);
 
         return $this->sendSuccess('Stores update successfully.');
        
@@ -76,13 +76,11 @@ class StoresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Stores $store)
     {   
 
-        $stores = Stores::findOrFail($id);
-        $stores->delete();
+        $store->delete();
 
         return $this->sendSuccess('stores deleted successfully.');
-
     }
 }

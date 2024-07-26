@@ -41,7 +41,7 @@ class StoresRepository
         return $query;
     }
 
-    public function update($request, $stores)
+    public function update($input, $stores)
     {
         $stores->update($input);
 
