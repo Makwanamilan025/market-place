@@ -3,7 +3,10 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\Api\ActiveModuleController;
+use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -32,6 +35,34 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('/{stores}/edit',[ActiveModuleController::class,'edit']);
         Route::post('/{stores}/update',[ActiveModuleController::class,'update']);
         Route::delete('/{store}/delete', [ActiveModuleController::class, 'destroy']);
+
+    });
+
+    Route::group(['prefix' => 'warehouse'], function () {
+        Route::get('/',[WarehouseController::class,'index']);
+        Route::post('/',[WarehouseController::class,'store']);
+        Route::get('/{stores}/edit',[WarehouseController::class,'edit']);
+        Route::post('/{stores}/update',[WarehouseController::class,'update']);
+        Route::delete('/{store}/delete', [WarehouseController::class, 'destroy']);
+
+    });
+
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get('/',[CustomerController::class,'index']);
+        Route::post('/',[CustomerController::class,'store']);
+        Route::get('/{stores}/edit',[CustomerController::class,'edit']);
+        Route::post('/{stores}/update',[CustomerController::class,'update']);
+        Route::delete('/{store}/delete', [CustomerController::class, 'destroy']);
+
+    });
+
+
+    Route::group(['prefix' => 'wallet'], function () {
+        Route::get('/',[WalletController::class,'index']);
+        Route::post('/',[WalletController::class,'store']);
+        Route::get('/{stores}/edit',[WalletController::class,'edit']);
+        Route::post('/{stores}/update',[WalletController::class,'update']);
+        Route::delete('/{store}/delete', [WalletController::class, 'destroy']);
 
     });
 
