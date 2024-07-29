@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stores extends Model
+class Warehouse extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'store_id',
         'name',
         'address',
         'city',
@@ -18,17 +18,12 @@ class Stores extends Model
         'country',
         'zip',
         'phone',
-        'currency',
-        'multi_location_enabled',
+        'location_tag',
     ];
-    
-    public function user()
+
+    public function store()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Stores::class);
     }
 
-    public function warehouses()
-    {
-        return $this->hasMany(Warehouse::class);
-    }
 }
