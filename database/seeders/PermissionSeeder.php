@@ -43,15 +43,15 @@ class PermissionSeeder extends Seeder
             ['name' => 'training_topic', 'guard_name' => 'api'],
         ];
 
-        $OwnerPermissions =[
-            ['name' => 'interview', 'guard_name' => 'api'],
-            ['name' => 'expences', 'guard_name' => 'api'],
-            ['name' => 'notification', 'guard_name' => 'api'],
-            ['name' => 'role', 'guard_name' => 'api'],
-            ['name' => 'completed_training', 'guard_name' => 'api'],
-            ['name' => 'employee_status', 'guard_name' => 'api'],
-            ['name' => 'training_topic', 'guard_name' => 'api'],
-        ];
+        // $OwnerPermissions =[
+        //     ['name' => 'interview', 'guard_name' => 'api'],
+        //     ['name' => 'expences', 'guard_name' => 'api'],
+        //     ['name' => 'notification', 'guard_name' => 'api'],
+        //     ['name' => 'role', 'guard_name' => 'api'],
+        //     ['name' => 'completed_training', 'guard_name' => 'api'],
+        //     ['name' => 'employee_status', 'guard_name' => 'api'],
+        //     ['name' => 'training_topic', 'guard_name' => 'api'],
+        // ];
 
         $adminRole = Role::create(['name' => 'admin', 'guard_name' => 'api']);
 

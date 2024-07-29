@@ -23,7 +23,6 @@ class AuthController extends Controller
 {
     public function register(UserRequest $request): JsonResponse
     {
-
         $user =  User::create([
             'name' => $request->name,
             'email' => $request->email,

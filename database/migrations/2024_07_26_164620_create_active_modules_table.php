@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('active_modules', function (Blueprint $table) {
             $table->id(); 
             $table->string('name'); 
-            $table->boolean('status'); 
+            $table->boolean('status')->default(1)->nullable(); 
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
             $table->timestamps(); 
         });

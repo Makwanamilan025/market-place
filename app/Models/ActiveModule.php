@@ -11,6 +11,8 @@ class ActiveModule extends Model
     
     protected $fillable = ['name', 'status', 'user_id']; 
 
+    protected $castes = [ 'status' => 'boolean'];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

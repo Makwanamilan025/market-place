@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('zip');
             $table->string('phone');
             $table->string('currency');
-            $table->string('multi_location_enabled');
+            $table->tinyInteger('multi_location_enabled');
             $table->timestamps();
         });
     }
