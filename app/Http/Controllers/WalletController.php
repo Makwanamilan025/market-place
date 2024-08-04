@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\WalletRequest;
+
 
 class WalletController extends Controller
 {
@@ -18,15 +20,9 @@ class WalletController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(WalletRequest $request)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'store_id' => 'required|exists:stores,id',
-            'amount' => 'required|numeric|min:0',
-            'status' => 'required|string',
-        ]);
-
+      
         Wallet::create($request->all());
         return $this->sendSuccess('recorde store successfully.');
     }
@@ -35,17 +31,10 @@ class WalletController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Wallet $wallet)
+    public function update(WalletRequest $request, Wallet $wallet)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'store_id' => 'required|exists:stores,id',
-            'amount' => 'required|numeric|min:0',
-            'status' => 'required|string',
-        ]);
-
         $wallet->update($request->all());
-        return redirect()->route('wallets.index')->with('success', 'Wallet updated successfully.');
+        return $this->sendSuccess('recorde update successfully.');
     }
 
     /**

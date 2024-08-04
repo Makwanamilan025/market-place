@@ -10,9 +10,10 @@ class WarehouseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $request->gat();
+        dd($request);
     }
 
     /**
@@ -32,7 +33,7 @@ class WarehouseController extends Controller
             'location_tag' => 'nullable|string|max:255',
         ]);
 
-        Warehouse::create($request->all());
+        Warehouse::create($request);
         return $this->sendSuccess('recorde created successfully.');
     }    
 
@@ -41,8 +42,6 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-
         $request->validate([
             'store_id' => 'required|exists:stores,id',
             'name' => 'required|string|max:255',
@@ -55,7 +54,7 @@ class WarehouseController extends Controller
             'location_tag' => 'nullable|string|max:255',
         ]);
 
-        $warehouse->update($request->all());
+        Warhouse::update($request);
         return $this->sendSuccess('recorde update successfully.');
 
     }

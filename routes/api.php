@@ -7,8 +7,9 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\StudentModelController;
 use Illuminate\Support\Facades\Route;
-
+                                                               
 //  👉 Route For Login, Register
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'signIn']);
@@ -47,12 +48,12 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     });
 
-    Route::group(['prefix' => 'customer'], function () {
+    Route::group(['prefix' => 'customers'], function () {
         Route::get('/',[CustomerController::class,'index']);
         Route::post('/',[CustomerController::class,'store']);
-        Route::get('/{stores}/edit',[CustomerController::class,'edit']);
-        Route::post('/{stores}/update',[CustomerController::class,'update']);
-        Route::delete('/{store}/delete', [CustomerController::class, 'destroy']);
+        Route::get('/{Customer}/edit',[CustomerController::class,'edit']);
+        Route::post('/{Customer}/update',[CustomerController::class,'update']);
+        Route::delete('/{Customer}/delete', [CustomerController::class, 'destroy']);
 
     });
 
@@ -65,5 +66,16 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::delete('/{store}/delete', [WalletController::class, 'destroy']);
 
     });
+
+
+    
+    Route::group(['prefix' => 'students'], function () {
+        Route::get('/',[StudentModelController::class,'index']);
+        Route::post('/',[StudentModelController::class,'store']);
+        Route::post('/{stores}/update',[StudentModelController::class,'update']);
+        Route::delete('/{store}/delete', [StudentModelController::class, 'destroy']);
+
+    });
+
 
 });

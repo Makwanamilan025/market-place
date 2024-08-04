@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Model\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -20,7 +21,26 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate(
+            [
+                'name'=> 'required',
+                'email' => 'required',
+                'password'=> 'required',
+                'phone'=> 'required',
+                'address1'=> 'required',
+                'address2'=> 'required',
+                'city'=> 'required',
+                'state'=> 'required',
+                'country'=> 'required',
+                'status'=> 'required',
+                'type'=> 'required',
+            ]
+        );
+
+        Customer::create($request);
+        return $this->sendSuccess('recorde created successfully.');
+
     }
 
     /**

@@ -11,7 +11,7 @@ class Customer extends Model
     protected $fillable = [
         'name',
         'email',
-        'email_verified_at',
+        // 'email_verified_at',
         'password',
         'phone',
         'address1',
@@ -33,7 +33,4 @@ class Customer extends Model
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-}
+}  

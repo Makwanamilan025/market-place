@@ -16,12 +16,24 @@ class ActiveModuleController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = ($request->filled('per_page')) ? $request->per_page : 10;
-        $activemodules = ActiveModule::where('name', 'like', "%{$request->search}%")
-            ->latest()->paginate($perPage);
+$request->validate([
+    'per_page' => 'nullable|integer|min:1|max:100',
+    'search' => 'nullable|string|max:255',
+]);
 
-        $activemodules = ActiveModuleResource::collection($activemodules);
-        return $this->sendResponse($activemodules, 'Record listed successfully.');
+
+$perPage = $request->input('per_page', 10);
+$searchTerm = $request->input('search', '');
+$query = ActiveModule::query();
+
+if (!empty($searchTerm)) {
+    $query->where('name', 'like', "%{$searchTerm}%");
+}
+
+$activemodules = $query->latest()->paginate($perPage);
+$activemodules = ActiveModuleResource::collection($activemodules);
+return $this->sendResponse($activemodules, 'Records listed successfully.');
+
     }
 
     /**
